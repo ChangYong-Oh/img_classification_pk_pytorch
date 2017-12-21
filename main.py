@@ -201,4 +201,4 @@ if __name__ == '__main__':
     elapsed_time = end_time - start_time
     print('Start : ' + time.strftime('%Y%m%d-%H:%M:%S', time.gmtime(start_time)))
     print('  End : ' + time.strftime('%Y%m%d-%H:%M:%S', time.gmtime(end_time)))
-    print('        %2d days %s(=%f seconds)' % (int(start_time / 86400), time.strftime('%H:%M:%S', time.gmtime(elapsed_time)), elapsed_time))
+    print('        %2d days %s(=%f seconds)' % (int(elapsed_time / 86400), time.strftime('%H:%M:%S', time.gmtime(elapsed_time)), elapsed_time))
