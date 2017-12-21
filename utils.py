@@ -9,8 +9,7 @@ from colorama import Fore
 
 def create_save_folder(save_path, force=False, ignore_patterns=[]):
     if os.path.exists(save_path):
-        print(Fore.RED + save_path + Fore.RESET
-              + ' already exists!', file=sys.stderr)
+        print(Fore.RED + save_path + Fore.RESET + ' already exists!')
         if not force:
             ans = input('Do you want to overwrite it? [y/N]:')
             if ans not in ('y', 'Y', 'yes', 'Yes'):
