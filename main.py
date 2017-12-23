@@ -192,13 +192,15 @@ def main():
         if not is_best and epoch - best_epoch >= args.patience > 0:
             break
     print('Best val_err1: {:.4f} at epoch {}'.format(best_err1, best_epoch))
+    return best_err1
 
 
 if __name__ == '__main__':
     start_time = time.time()
-    main()
+    validation_error = main()
     end_time = time.time()
     elapsed_time = end_time - start_time
     print('Start : ' + time.strftime('%Y%m%d-%H:%M:%S', time.gmtime(start_time)))
     print('  End : ' + time.strftime('%Y%m%d-%H:%M:%S', time.gmtime(end_time)))
     print('        %2d days %s(=%f seconds)' % (int(elapsed_time / 86400), time.strftime('%H:%M:%S', time.gmtime(elapsed_time)), elapsed_time))
+    print(validation_error)

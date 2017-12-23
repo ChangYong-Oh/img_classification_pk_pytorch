@@ -62,10 +62,12 @@ arch_group.add_argument('-d', '--depth', default=56, type=int, metavar='D',
 arch_group.add_argument('--drop-rate', default=0.0, type=float,
                         metavar='DROPRATE', help='dropout rate (default: 0.2)')
 arch_group.add_argument('--death-mode', default='none',
-                        choices=['none', 'linear', 'uniform'],
+                        choices=['none', 'linear', 'uniform', 'chosen'],
                         help='death mode (default: none)')
 arch_group.add_argument('--death-rate', default=0.5, type=float,
                         help='death rate rate (default: 0.5)')
+arch_group.add_argument('--death-rate-filename', default='', type=str,
+                        help='pickle filename storing chosen death rate (list) only valid when death mode is chosen')
 arch_group.add_argument('--growth-rate', default=12, type=int,
                         metavar='GR', help='Growth rate of DenseNet'
                         ' (1 means dot\'t use compression) (default: 0.5)')

@@ -2,6 +2,7 @@
 # https://github.com/pytorch/vision/blob/master/torchvision/models/resnet.py
 
 import math
+import pickle
 import torch
 from torch import nn
 from torchvision.models.resnet import conv3x3
@@ -156,6 +157,11 @@ def createModel(depth, data, num_classes, death_mode='none', death_rate=0.5,
     elif death_mode == 'linear':
         death_rates = [float(i + 1) * death_rate / float(nblocks)
                        for i in range(nblocks)]
+    elif death_mode == 'chosen':
+        death_rate_file = open(kwargs['death_rate_filename'])
+        death_rates = pickle.load(death_rate_file)
+        assert len(death_rates) == nblocks
+        death_rate_file.close()
     else:
         death_rates = None
     return ResNetCifar(depth, death_rates, BasicBlockWithDeathRate,
