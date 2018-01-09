@@ -75,7 +75,7 @@ class Trainer(object):
                       .format(epoch, loss=losses, top1=top1, top5=top5))
         return losses.avg, top1.avg, top5.avg, lr
 
-    def test(self, val_loader, epoch, silence=False):
+    def test(self, val_loader, silence=False):
         batch_time = AverageMeter()
         losses = AverageMeter()
         top1 = AverageMeter()
@@ -105,8 +105,7 @@ class Trainer(object):
             end = time.time()
 
         if not silence:
-            print('Epoch: {:3d} val   loss {loss.avg:.4f} Err@1 {top1.avg:.4f}'
-                  ' Err@5 {top5.avg:.4f}'.format(epoch, loss=losses,
-                                                 top1=top1, top5=top5))
+            print('loss {loss.avg:.4f} Err@1 {top1.avg:.4f}'
+                  ' Err@5 {top5.avg:.4f}'.format(loss=losses, top1=top1, top5=top5))
 
         return losses.avg, top1.avg, top5.avg
