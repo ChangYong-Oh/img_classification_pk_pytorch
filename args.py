@@ -104,6 +104,8 @@ optim_group.add_argument('--lr', '--learning-rate', default=0.1, type=float,
                          help='initial learning rate (default: 0.1)')
 optim_group.add_argument('--decay_rate', default=0.1, type=float, metavar='N',
                          help='decay rate of learning rate (default: 0.1)')
+optim_group.add_argument('--decay_epoch_ratio', default='0.5,0.75', type=str, metavar='N',
+                         help='list of ratio of epoch where decay occurs (default: 0.5,0.75)')
 optim_group.add_argument('--momentum', default=0.9, type=float, metavar='M',
                          help='momentum (default=0.9)')
 optim_group.add_argument('--no_nesterov', dest='nesterov',

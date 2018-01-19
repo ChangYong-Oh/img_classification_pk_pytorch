@@ -36,13 +36,19 @@ def create_save_folder(save_path, force=False, ignore_patterns=[]):
                                                       *ignore_patterns))
 
 
-def adjust_learning_rate(optimizer, lr_init, decay_rate, epoch, num_epochs):
+def adjust_learning_rate(optimizer, lr_init, decay_rate, epoch, num_epochs, decay_epoch_ratio_str='0.5,0.75'):
     """Decay Learning rate at 1/2 and 3/4 of the num_epochs"""
     lr = lr_init
-    if epoch >= num_epochs * 0.75:
-        lr *= decay_rate**2
-    elif epoch >= num_epochs * 0.5:
-        lr *= decay_rate
+    decay_epoch_ratio = [0.0] + [float(elm) for elm in decay_epoch_ratio_str.split(',')] + [1.0]
+    n_decay = len(decay_epoch_ratio) - 1
+    for i in range(n_decay - 1, 0, -1):
+        if epoch >= num_epochs * decay_epoch_ratio[i]:
+            lr *= decay_rate ** i
+            break
+    # if epoch >= num_epochs * 0.75:
+    #     lr *= decay_rate**2
+    # elif epoch >= num_epochs * 0.5:
+    #     lr *= decay_rate
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
     return lr

@@ -26,7 +26,7 @@ class Trainer(object):
 
         lr = adjust_learning_rate(self.optimizer, self.args.lr,
                                   self.args.decay_rate, epoch,
-                                  self.args.epochs)  # TODO: add custom
+                                  self.args.epochs, self.args.decay_epoch_ratio)  # TODO: add custom
         print('Epoch {:3d} lr = {:.6e}'.format(epoch, lr))
 
         end = time.time()
